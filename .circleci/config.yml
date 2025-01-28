@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the desired version here
-      - image: circleci/ruby:2.5.3-node-browsers
+      - image: circleci/ruby:3.3.7
         environment:
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
@@ -25,15 +25,15 @@ jobs:
       #    (or conflicts on native gems may appear)
       - restore_cache:
           keys:
-            - v7-gem-cache-ruby-2.5-{{ arch }}-{{ checksum "sidekiq-worker-killer.gemspec" }}-{{ checksum "Appraisals" }}
-            - v7-gem-cache-ruby-2.5-{{ arch }}-
+            - v7-gem-cache-ruby-3.3-{{ arch }}-{{ checksum "sidekiq-worker-killer.gemspec" }}-{{ checksum "Appraisals" }}
+            - v7-gem-cache-ruby-3.3-{{ arch }}-
 
       - run:
           name: Install dependencies
           command: make bundle
 
       - save_cache:
-          key: v7-gem-cache-ruby-2.5-{{ arch }}-{{ checksum "sidekiq-worker-killer.gemspec" }}-{{ checksum "Appraisals" }}
+          key: v7-gem-cache-ruby-3.3-{{ arch }}-{{ checksum "sidekiq-worker-killer.gemspec" }}-{{ checksum "Appraisals" }}
           paths:
             - .bundle
 
